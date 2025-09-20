@@ -1,84 +1,84 @@
-"use client"
+'use client';
 
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { ProductCard } from "./product-card"
-import { QuickLookModal } from "./quick-look-modal"
-import { Reveal } from "./reveal"
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { ProductCard } from './product-card';
+import { QuickLookModal } from './quick-look-modal';
+import { Reveal } from './reveal';
 
 const featuredProducts = [
   {
-    id: "4",
-    name: "Verde Modular Chair",
-    price: "€4,890",
-    image: "/green-velvet-modular-chair.png",
-    badge: "New" as const,
-    materials: ["Copper Frame", "Premium Velvet"],
+    id: 'bridal-package',
+    name: 'Bridal Makeup Package',
+    price: '€450',
+    image: '/categories/traditonal-bridal.jpg',
+    badge: 'Popular' as const,
+    materials: ['Premium Foundation', 'Long-lasting Lipstick'],
     swatches: [
-      { name: "Forest Green", color: "#355E3B" },
-      { name: "Sage Green", color: "#9CAF88" },
-      { name: "Copper", color: "#B87333" },
+      { name: 'Natural', color: '#F5E6D3' },
+      { name: 'Warm', color: '#E8B4A0' },
+      { name: 'Cool', color: '#D4C5C9' },
     ],
     quickLookImages: [
-      "/green-velvet-modular-chair.png",
-      "/placeholder.svg?height=600&width=600",
-      "/placeholder.svg?height=600&width=600",
+      '/categories/traditonal-bridal.jpg',
+      '/categories/contemporary-bridal-makeup.jpg',
+      '/placeholder.svg?height=600&width=600',
     ],
-    dimensions: "W: 180cm × D: 90cm × H: 75cm",
+    dimensions: 'Full Day Service • Touch-ups Included',
   },
   {
-    id: "7",
-    name: "Terracotta Cloud Chair",
-    price: "€5,250",
-    image: "/terracotta-cloud-chair.png",
-    badge: "New" as const,
-    materials: ["Copper Frame", "Terracotta Velvet"],
+    id: 'party-glam-package',
+    name: 'Party Glam Package',
+    price: '€280',
+    image: '/categories/red-carpet-glam.jpg',
+    badge: 'Trending' as const,
+    materials: ['HD Foundation', 'Waterproof Mascara'],
     swatches: [
-      { name: "Terracotta", color: "#E2725B" },
-      { name: "Burnt Orange", color: "#CC5500" },
-      { name: "Copper", color: "#B87333" },
+      { name: 'Dramatic', color: '#2C1810' },
+      { name: 'Smoky', color: '#4A4A4A' },
+      { name: 'Glam', color: '#8B4513' },
     ],
     quickLookImages: [
-      "/terracotta-cloud-chair.png",
-      "/placeholder.svg?height=600&width=600",
-      "/placeholder.svg?height=600&width=600",
+      '/categories/red-carpet-glam.jpg',
+      '/categories/evening-party-looks.jpg',
+      '/placeholder.svg?height=600&width=600',
     ],
-    dimensions: "W: 95cm × D: 85cm × H: 80cm",
+    dimensions: '4-Hour Service • Photo-Ready Finish',
   },
   {
-    id: "8",
-    name: "Sage Copper Lounge",
-    price: "€4,675",
-    image: "/sage-copper-lounge-chair.png",
-    badge: "Limited" as const,
-    materials: ["Copper Frame", "Sage Velvet"],
+    id: 'editorial-package',
+    name: 'Editorial Makeup',
+    price: '€350',
+    image: '/categories/creative-makeup.jpg',
+    badge: 'Artistic' as const,
+    materials: ['Professional Palette', 'Airbrush Foundation'],
     swatches: [
-      { name: "Sage Green", color: "#9CAF88" },
-      { name: "Forest Green", color: "#355E3B" },
-      { name: "Copper", color: "#B87333" },
+      { name: 'Creative', color: '#FF6B9D' },
+      { name: 'Bold', color: '#FF1744' },
+      { name: 'Unique', color: '#9C27B0' },
     ],
     quickLookImages: [
-      "/sage-copper-lounge-chair.png",
-      "/placeholder.svg?height=600&width=600",
-      "/placeholder.svg?height=600&width=600",
+      '/categories/creative-makeup.jpg',
+      '/categories/photoshoot-makeup.jpg',
+      '/placeholder.svg?height=600&width=600',
     ],
-    dimensions: "W: 85cm × D: 90cm × H: 75cm",
+    dimensions: '6-Hour Session • Creative Freedom',
   },
-]
+];
 
 export function FeaturedProducts() {
-  const [selectedProduct, setSelectedProduct] = useState<any>(null)
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleQuickLook = (product: any) => {
-    setSelectedProduct(product)
-    setIsModalOpen(true)
-  }
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
 
   const closeModal = () => {
-    setIsModalOpen(false)
-    setSelectedProduct(null)
-  }
+    setIsModalOpen(false);
+    setSelectedProduct(null);
+  };
 
   return (
     <section className="py-20 lg:py-32" id="featured-products">
@@ -86,11 +86,12 @@ export function FeaturedProducts() {
         <Reveal>
           <div className="text-left mb-16">
             <h2 className="text-4xl text-neutral-900 mb-4 lg:text-6xl">
-              Featured <span className="italic font-light">Collection</span>
+              Featured <span className="italic font-light">Services</span>
             </h2>
             <p className="text-lg text-neutral-600 max-w-2xl">
-              Discover our most beloved pieces, each crafted with meticulous attention to detail and timeless design
-              principles.
+              Discover our most popular makeup packages, each designed with
+              professional expertise and premium products for your special
+              occasions.
             </p>
           </div>
         </Reveal>
@@ -132,7 +133,11 @@ export function FeaturedProducts() {
         </motion.div>
       </div>
 
-      <QuickLookModal product={selectedProduct} isOpen={isModalOpen} onClose={closeModal} />
+      <QuickLookModal
+        product={selectedProduct}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+      />
     </section>
-  )
+  );
 }
