@@ -37,7 +37,7 @@ export function Footer() {
 
   return (
     <footer className="bg-white/[0.02] border-t border-white/[0.02]">
-      <div className="container-custom py-16 lg:py-20">
+      <div className="container-custom py-20 lg:py-24">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 mb-12">
           {/* Brand Section */}
@@ -111,7 +111,7 @@ export function Footer() {
 
         {/* Bottom Section */}
         <motion.div
-          className="pt-8 pb-4 border-t border-neutral-200 flex justify-center items-center"
+          className="pt-8 pb-8 border-t border-neutral-200 flex justify-center items-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}

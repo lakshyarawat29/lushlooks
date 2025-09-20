@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { Reveal } from './reveal';
 
 const categories = [
@@ -124,6 +125,7 @@ const categories = [
 
 export function CollectionStrip() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start end', 'end start'],
@@ -137,8 +139,17 @@ export function CollectionStrip() {
     typeof window !== 'undefined' ? window.innerWidth : 1200;
   const maxDrag = Math.max(0, totalWidth - containerWidth + 48); // add padding
 
+  const handleCategoryDoubleClick = (category: string) => {
+    // Navigate to artists page with category filter
+    router.push(`/artists?category=${encodeURIComponent(category)}`);
+  };
+
   return (
-    <section ref={containerRef} className="py-20 lg:py-32 overflow-hidden">
+    <section
+      ref={containerRef}
+      id="categories"
+      className="py-20 lg:py-32 overflow-hidden"
+    >
       <div className="mb-12">
         <Reveal>
           <div className="container-custom text-center">
@@ -168,6 +179,7 @@ export function CollectionStrip() {
               className="flex-shrink-0 w-96 group cursor-pointer"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
+              onDoubleClick={() => handleCategoryDoubleClick(category.category)}
             >
               <div className="relative aspect-[4/5] rounded-2xl overflow-hidden mb-4">
                 <motion.div
@@ -208,7 +220,7 @@ export function CollectionStrip() {
 
       <div className="text-center mt-8">
         <p className="text-sm text-neutral-500">
-          ← Drag to explore categories →
+          ← Drag to explore categories → • Double-click to view artists
         </p>
       </div>
     </section>

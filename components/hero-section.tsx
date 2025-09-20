@@ -76,7 +76,11 @@ export function HeroSection() {
   };
 
   return (
-    <section ref={containerRef} className="relative h-screen overflow-hidden">
+    <section
+      ref={containerRef}
+      id="hero"
+      className="relative h-screen overflow-hidden"
+    >
       {/* Background Slideshow with Cinematic Effects */}
       <motion.div
         className="absolute inset-0"
@@ -164,35 +168,6 @@ export function HeroSection() {
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
-      </motion.div>
-
-      {/* Info Strip */}
-      <motion.div
-        className="absolute bottom-0 left-0 right-0 z-20 flex justify-center"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 0.8,
-          delay: 1.2,
-          ease: [0.21, 0.47, 0.32, 0.98],
-        }}
-      >
-        <BlurPanel className="mx-6 mb-6 px-6 py-4 bg-black/24 backdrop-blur-md border-white/20">
-          <div className="flex items-center justify-center gap-6 text-white/90">
-            <div className="flex items-center gap-2">
-              <PackageCheck className="w-4 h-4 text-green-400" />
-              <span className="text-sm">Free shipping</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Rocket className="w-4 h-4 text-amber-400" />
-              <span className="text-sm">Delivered in 6 weeks</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-blue-400" />
-              <span className="text-sm">Lifetime guarantee</span>
-            </div>
-          </div>
-        </BlurPanel>
       </motion.div>
     </section>
   );

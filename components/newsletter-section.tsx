@@ -29,7 +29,7 @@ export function NewsletterSection() {
   };
 
   return (
-    <section className="py-20 lg:py-32">
+    <section className="pt-20 pb-32 lg:pt-32 lg:pb-40">
       <div className="container-custom">
         <Reveal>
           <div className="max-w-2xl mx-auto">

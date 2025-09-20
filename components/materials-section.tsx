@@ -91,7 +91,10 @@ export function TestimonialsSection() {
   const duplicatedTestimonials = [...testimonials, ...testimonials];
 
   return (
-    <section className="py-20 lg:py-32 bg-neutral-50" id="testimonials">
+    <section
+      className="pt-20 pb-32 lg:pt-32 lg:pb-40 bg-neutral-50"
+      id="testimonials"
+    >
       {/* Section Header */}
       <div className="container-custom mb-16">
         <div className="text-center">
