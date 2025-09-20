@@ -100,7 +100,7 @@ export function HeroSection() {
           >
             <Image
               src={heroImages[currentImageIndex]}
-              alt={`KATACHI Studio - Hero image ${currentImageIndex + 1}`}
+              alt={`LushLooks Studio - Hero image ${currentImageIndex + 1}`}
               fill
               className="object-cover"
               priority={currentImageIndex === 0}
