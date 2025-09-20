@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
+import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { useSearchParams, useRouter } from 'next/navigation';
@@ -292,7 +293,7 @@ const artists = [
   },
 ];
 
-export default function ArtistsPage() {
+function ArtistsContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -494,4 +495,30 @@ export default function ArtistsPage() {
       </div>
     </div>
   );
+}
+
+// Create a dynamic component for the artists content
+const DynamicArtistsContent = dynamic(() => Promise.resolve(ArtistsContent), {
+  loading: () => (
+    <div className="min-h-screen bg-neutral-50 pb-20">
+      <Header />
+      <section className="pt-24 pb-16 bg-gradient-to-b from-neutral-50 to-white">
+        <div className="container-custom">
+          <div className="text-center">
+            <h1 className="text-5xl md:text-6xl font-bold text-neutral-900 mb-4">
+              Our <span className="italic font-light">Artists</span>
+            </h1>
+            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+              Loading artists...
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+  ),
+  ssr: false,
+});
+
+export default function ArtistsPage() {
+  return <DynamicArtistsContent />;
 }
