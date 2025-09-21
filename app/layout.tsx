@@ -56,7 +56,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} antialiased`}>
-      <body className="font-sans bg-neutral-50 text-neutral-900 overflow-x-hidden">
+      <body
+        className="font-sans bg-neutral-50 text-neutral-900 overflow-x-hidden"
+        suppressHydrationWarning={true}
+      >
         {children}
       </body>
     </html>

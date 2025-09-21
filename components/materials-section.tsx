@@ -92,16 +92,16 @@ export function TestimonialsSection() {
 
   return (
     <section
-      className="pt-20 pb-32 lg:pt-32 lg:pb-40 bg-neutral-50"
+      className="pt-16 sm:pt-20 pb-24 sm:pb-32 lg:pt-32 lg:pb-40 bg-neutral-50"
       id="testimonials"
     >
       {/* Section Header */}
-      <div className="container-custom mb-16">
-        <div className="text-center">
-          <h2 className="text-5xl md:text-6xl font-bold text-neutral-900 mb-4">
+      <div className="container-custom mb-12 sm:mb-16">
+        <div className="text-center px-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-4">
             Happy <span className="italic font-light">Customers</span>
           </h2>
-          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto">
             See what our clients say about their LushLooks experience
           </p>
         </div>
@@ -110,7 +110,7 @@ export function TestimonialsSection() {
       {/* Infinite Scrolling Testimonials Tape */}
       <div className="overflow-hidden">
         <motion.div
-          className="flex gap-6 py-8"
+          className="flex gap-4 sm:gap-6 py-6 sm:py-8"
           animate={{
             x: [0, -100 * testimonials.length],
           }}
@@ -123,13 +123,13 @@ export function TestimonialsSection() {
             },
           }}
           style={{
-            width: `${testimonials.length * 2 * 320}px`, // Double width for seamless loop
+            width: `${testimonials.length * 2 * 280}px`, // Adjusted for mobile
           }}
         >
           {duplicatedTestimonials.map((testimonial, index) => (
             <motion.div
               key={`${testimonial.id}-${index}`}
-              className="flex-shrink-0 w-80 h-48 rounded-2xl p-6 shadow-lg border border-neutral-200/50"
+              className="flex-shrink-0 w-64 sm:w-72 md:w-80 h-40 sm:h-44 md:h-48 rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 shadow-lg border border-neutral-200/50"
               style={{
                 background: testimonial.color,
               }}
@@ -138,17 +138,17 @@ export function TestimonialsSection() {
             >
               <div className="flex flex-col h-full justify-between">
                 {/* Quote Icon */}
-                <Quote className="w-6 h-6 text-neutral-400 mb-3" />
+                <Quote className="w-5 h-5 sm:w-6 sm:h-6 text-neutral-400 mb-2 sm:mb-3" />
 
                 {/* Testimonial Text */}
-                <p className="text-neutral-700 text-sm leading-relaxed mb-4 flex-1">
+                <p className="text-neutral-700 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4 flex-1">
                   "{testimonial.testimonial}"
                 </p>
 
                 {/* Bottom Section */}
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-semibold text-neutral-900 text-sm">
+                    <p className="font-semibold text-neutral-900 text-xs sm:text-sm">
                       {testimonial.name}
                     </p>
                     <p className="text-xs text-neutral-500">
@@ -157,12 +157,12 @@ export function TestimonialsSection() {
                   </div>
 
                   {/* Star Rating */}
-                  <div className="flex gap-1">
+                  <div className="flex gap-0.5 sm:gap-1">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <Star
                         key={i}
-                        size={14}
-                        className="text-yellow-400 fill-current"
+                        size={12}
+                        className="text-yellow-400 fill-current sm:w-3.5 sm:h-3.5"
                       />
                     ))}
                   </div>
@@ -174,21 +174,31 @@ export function TestimonialsSection() {
       </div>
 
       {/* Stats Section */}
-      <div className="container-custom mt-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          <div className="bg-white rounded-2xl p-8 shadow-sm border border-neutral-200/50">
-            <div className="text-4xl font-bold text-neutral-900 mb-2">500+</div>
-            <div className="text-neutral-600">Happy Clients</div>
+      <div className="container-custom mt-12 sm:mt-16">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 text-center px-4">
+          <div className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-sm border border-neutral-200/50">
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-neutral-900 mb-2">
+              500+
+            </div>
+            <div className="text-sm sm:text-base text-neutral-600">
+              Happy Clients
+            </div>
           </div>
-          <div className="bg-white rounded-2xl p-8 shadow-sm border border-neutral-200/50">
-            <div className="text-4xl font-bold text-neutral-900 mb-2">
+          <div className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-sm border border-neutral-200/50">
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-neutral-900 mb-2">
               1000+
             </div>
-            <div className="text-neutral-600">Events Completed</div>
+            <div className="text-sm sm:text-base text-neutral-600">
+              Events Completed
+            </div>
           </div>
-          <div className="bg-white rounded-2xl p-8 shadow-sm border border-neutral-200/50">
-            <div className="text-4xl font-bold text-neutral-900 mb-2">5★</div>
-            <div className="text-neutral-600">Average Rating</div>
+          <div className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-sm border border-neutral-200/50">
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-neutral-900 mb-2">
+              5★
+            </div>
+            <div className="text-sm sm:text-base text-neutral-600">
+              Average Rating
+            </div>
           </div>
         </div>
       </div>

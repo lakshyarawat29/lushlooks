@@ -135,8 +135,8 @@ export function CollectionStrip() {
 
   const itemWidth = 400; // 400px (w-96) + 32px gap = 432px per item
   const totalWidth = categories.length * (itemWidth + 32) - 32; // subtract last gap
-  const containerWidth =
-    typeof window !== 'undefined' ? window.innerWidth : 1200;
+  // Use a fixed value for SSR to prevent hydration mismatch
+  const containerWidth = 1200; // Default container width for SSR
   const maxDrag = Math.max(0, totalWidth - containerWidth + 48); // add padding
 
   const handleCategoryDoubleClick = (category: string) => {
@@ -148,15 +148,15 @@ export function CollectionStrip() {
     <section
       ref={containerRef}
       id="categories"
-      className="py-20 lg:py-32 overflow-hidden"
+      className="py-16 sm:py-20 lg:py-32 overflow-hidden"
     >
-      <div className="mb-12">
+      <div className="mb-8 sm:mb-12">
         <Reveal>
-          <div className="container-custom text-center">
-            <h2 className="text-neutral-900 mb-4 text-6xl font-normal">
+          <div className="container-custom text-center px-4">
+            <h2 className="text-neutral-900 mb-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal">
               Categories
             </h2>
-            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto">
               Explore our extensive range of makeup looks, from bridal to
               everyday, each crafted to enhance your natural beauty for every
               occasion.
@@ -167,7 +167,7 @@ export function CollectionStrip() {
 
       <div className="relative">
         <motion.div
-          className="flex gap-8 px-6"
+          className="flex gap-4 sm:gap-6 md:gap-8 px-4 sm:px-6"
           style={{ x }}
           drag="x"
           dragConstraints={{ left: -maxDrag, right: 0 }}
@@ -176,12 +176,12 @@ export function CollectionStrip() {
           {categories.map((category, index) => (
             <motion.div
               key={category.id}
-              className="flex-shrink-0 w-96 group cursor-pointer"
+              className="flex-shrink-0 w-72 sm:w-80 md:w-96 group cursor-pointer"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
               onDoubleClick={() => handleCategoryDoubleClick(category.category)}
             >
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden mb-4">
+              <div className="relative aspect-[4/5] rounded-xl sm:rounded-2xl overflow-hidden mb-3 sm:mb-4">
                 <motion.div
                   className="relative w-full h-full"
                   whileHover={{ filter: 'blur(1px)' }}
@@ -192,22 +192,22 @@ export function CollectionStrip() {
                     alt={category.name}
                     fill
                     className="object-cover"
-                    sizes="400px"
+                    sizes="(max-width: 640px) 288px, (max-width: 768px) 320px, 384px"
                   />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-all duration-300" />
                 </motion.div>
 
                 <div className="absolute inset-0 flex items-center justify-center">
                   <motion.div
-                    className="text-center text-white px-6"
+                    className="text-center text-white px-4 sm:px-6"
                     initial={{ opacity: 0.8 }}
                     whileHover={{ opacity: 1, scale: 1.05 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <h3 className="text-2xl lg:text-3xl font-bold tracking-wider mb-3 leading-tight">
+                    <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold tracking-wider mb-2 sm:mb-3 leading-tight">
                       {category.name}
                     </h3>
-                    <p className="text-sm opacity-80 font-medium">
+                    <p className="text-xs sm:text-sm opacity-80 font-medium">
                       {category.category}
                     </p>
                   </motion.div>
@@ -218,9 +218,12 @@ export function CollectionStrip() {
         </motion.div>
       </div>
 
-      <div className="text-center mt-8">
-        <p className="text-sm text-neutral-500">
-          ← Drag to explore categories → • Double-click to view artists
+      <div className="text-center mt-6 sm:mt-8 px-4">
+        <p className="text-xs sm:text-sm text-neutral-500">
+          <span className="hidden sm:inline">
+            ← Drag to explore categories → • Double-click to view artists
+          </span>
+          <span className="sm:hidden">← Drag → • Double-tap for artists</span>
         </p>
       </div>
     </section>

@@ -328,13 +328,13 @@ function ArtistsContent() {
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-b from-neutral-50 to-white">
+      <section className="pt-20 sm:pt-24 pb-12 sm:pb-16 bg-gradient-to-b from-neutral-50 to-white">
         <div className="container-custom">
-          <div className="text-center">
-            <h1 className="text-5xl md:text-6xl font-bold text-neutral-900 mb-4">
+          <div className="text-center px-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-4">
               Our <span className="italic font-light">Artists</span>
             </h1>
-            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto">
               Meet our talented makeup artists, each specializing in different
               styles and occasions. Find the perfect artist for your special
               moment.
@@ -343,21 +343,21 @@ function ArtistsContent() {
         </div>
       </section>
 
-      <div className="container-custom pb-20">
-        <div className="flex gap-8">
+      <div className="container-custom pb-20 px-4">
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
           {/* Sidebar */}
-          <aside className="w-64 flex-shrink-0">
-            <div className="sticky top-24">
-              <h3 className="text-lg font-semibold text-neutral-900 mb-4">
+          <aside className="w-full lg:w-64 flex-shrink-0">
+            <div className="lg:sticky lg:top-24">
+              <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-4">
                 Filter by Category
               </h3>
-              <div className="space-y-2">
+              <div className="grid grid-cols-2 lg:grid-cols-1 gap-2 lg:space-y-2 lg:gap-0">
                 {categories.map((category) => (
                   <button
                     key={category}
                     onClick={() => setSelectedCategory(category)}
                     className={cn(
-                      'w-full text-left px-4 py-3 rounded-lg transition-all duration-200',
+                      'w-full text-left px-3 sm:px-4 py-2 sm:py-3 rounded-lg transition-all duration-200 text-sm sm:text-base',
                       selectedCategory === category
                         ? 'bg-neutral-900 text-white'
                         : 'text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900'
@@ -372,13 +372,13 @@ function ArtistsContent() {
 
           {/* Artists Grid */}
           <main className="flex-1 pb-8">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold text-neutral-900 mb-2">
+            <div className="mb-4 sm:mb-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-neutral-900 mb-2">
                 {selectedCategory === 'All'
                   ? 'All Artists'
                   : `${selectedCategory} Artists`}
               </h2>
-              <p className="text-neutral-600">
+              <p className="text-sm sm:text-base text-neutral-600">
                 {filteredArtists.length}{' '}
                 {filteredArtists.length === 1 ? 'artist' : 'artists'} found
               </p>
@@ -391,7 +391,7 @@ function ArtistsContent() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
               >
                 {filteredArtists.map((artist, index) => (
                   <motion.div
@@ -399,66 +399,69 @@ function ArtistsContent() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
-                    className="bg-white rounded-2xl overflow-hidden shadow-sm border border-neutral-200/50 hover:shadow-lg transition-all duration-300 cursor-pointer"
+                    className="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-sm border border-neutral-200/50 hover:shadow-lg transition-all duration-300 cursor-pointer"
                     onClick={() => handleViewArtist(artist.id)}
                   >
                     {/* Artist Image */}
-                    <div className="relative h-64">
+                    <div className="relative h-48 sm:h-56 md:h-64">
                       <Image
                         src={artist.image}
                         alt={artist.name}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                       />
-                      <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
-                        <span className="text-sm font-medium text-neutral-900">
+                      <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-white/90 backdrop-blur-sm px-2 py-1 sm:px-3 sm:py-1 rounded-full">
+                        <span className="text-xs sm:text-sm font-medium text-neutral-900">
                           {artist.price}
                         </span>
                       </div>
                     </div>
 
                     {/* Artist Info */}
-                    <div className="p-6">
+                    <div className="p-4 sm:p-6">
                       <div className="flex items-start justify-between mb-3">
                         <div>
-                          <h3 className="text-xl font-bold text-neutral-900 mb-1">
+                          <h3 className="text-lg sm:text-xl font-bold text-neutral-900 mb-1">
                             {artist.name}
                           </h3>
                           <div className="flex items-center gap-1 mb-2">
-                            <MapPin size={14} className="text-neutral-400" />
-                            <span className="text-sm text-neutral-600">
+                            <MapPin
+                              size={12}
+                              className="text-neutral-400 sm:w-3.5 sm:h-3.5"
+                            />
+                            <span className="text-xs sm:text-sm text-neutral-600">
                               {artist.location}
                             </span>
                           </div>
                         </div>
                         <div className="flex items-center gap-1">
                           <Star
-                            size={16}
-                            className="text-yellow-400 fill-current"
+                            size={14}
+                            className="text-yellow-400 fill-current sm:w-4 sm:h-4"
                           />
-                          <span className="text-sm font-medium text-neutral-900">
+                          <span className="text-xs sm:text-sm font-medium text-neutral-900">
                             {artist.rating}
                           </span>
                         </div>
                       </div>
 
-                      <p className="text-neutral-600 text-sm mb-4 line-clamp-2">
+                      <p className="text-neutral-600 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2">
                         {artist.description}
                       </p>
 
-                      <div className="flex items-center justify-between text-xs text-neutral-500 mb-4">
+                      <div className="flex items-center justify-between text-xs text-neutral-500 mb-3 sm:mb-4">
                         <div className="flex items-center gap-1">
-                          <Calendar size={12} />
-                          <span>{artist.experience}</span>
+                          <Calendar size={10} className="sm:w-3 sm:h-3" />
+                          <span className="text-xs">{artist.experience}</span>
                         </div>
                         <div className="flex items-center gap-1">
-                          <Award size={12} />
-                          <span>{artist.category}</span>
+                          <Award size={10} className="sm:w-3 sm:h-3" />
+                          <span className="text-xs">{artist.category}</span>
                         </div>
                       </div>
 
-                      <div className="flex flex-wrap gap-1 mb-4">
+                      <div className="flex flex-wrap gap-1 mb-3 sm:mb-4">
                         {artist.specialties.slice(0, 2).map((specialty) => (
                           <span
                             key={specialty}
@@ -479,7 +482,7 @@ function ArtistsContent() {
                           e.stopPropagation();
                           handleBookArtist(artist.id, artist.specialties[0]);
                         }}
-                        className="w-full bg-neutral-900 text-white py-3 rounded-lg font-medium hover:bg-neutral-800 transition-colors"
+                        className="w-full bg-neutral-900 text-white py-2 sm:py-3 rounded-lg text-sm sm:text-base font-medium hover:bg-neutral-800 transition-colors"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                       >

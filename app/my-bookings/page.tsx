@@ -129,14 +129,14 @@ export default function MyBookingsPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-12 bg-gradient-to-b from-neutral-50 to-white">
+      <section className="pt-20 sm:pt-24 pb-10 sm:pb-12 bg-gradient-to-b from-neutral-50 to-white">
         <div className="container-custom">
-          <div className="text-center">
+          <div className="text-center px-4">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-4xl md:text-5xl font-bold text-neutral-900 mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-900 mb-4"
             >
               My <span className="italic font-light">Bookings</span>
             </motion.h1>
@@ -144,7 +144,7 @@ export default function MyBookingsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-lg text-neutral-600 max-w-2xl mx-auto"
+              className="text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto"
             >
               View all your upcoming and past makeup bookings.
             </motion.p>
@@ -152,20 +152,20 @@ export default function MyBookingsPage() {
         </div>
       </section>
 
-      <div className="container-custom pb-20">
+      <div className="container-custom pb-20 px-4">
         {/* Tabs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex justify-center mb-12"
+          className="flex justify-center mb-8 sm:mb-12"
         >
-          <div className="bg-white rounded-2xl p-2 shadow-sm border border-neutral-200/50">
-            <div className="flex gap-2">
+          <div className="bg-white rounded-xl sm:rounded-2xl p-1 sm:p-2 shadow-sm border border-neutral-200/50">
+            <div className="flex gap-1 sm:gap-2">
               <motion.button
                 onClick={() => setActiveTab('upcoming')}
                 className={cn(
-                  'px-6 py-3 rounded-xl font-medium transition-all duration-200',
+                  'px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-medium transition-all duration-200 text-sm sm:text-base',
                   activeTab === 'upcoming'
                     ? 'bg-neutral-900 text-white shadow-sm'
                     : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50'
@@ -173,12 +173,13 @@ export default function MyBookingsPage() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Upcoming Bookings
+                <span className="hidden sm:inline">Upcoming Bookings</span>
+                <span className="sm:hidden">Upcoming</span>
               </motion.button>
               <motion.button
                 onClick={() => setActiveTab('past')}
                 className={cn(
-                  'px-6 py-3 rounded-xl font-medium transition-all duration-200',
+                  'px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-medium transition-all duration-200 text-sm sm:text-base',
                   activeTab === 'past'
                     ? 'bg-neutral-900 text-white shadow-sm'
                     : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50'
@@ -186,7 +187,8 @@ export default function MyBookingsPage() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Past Bookings
+                <span className="hidden sm:inline">Past Bookings</span>
+                <span className="sm:hidden">Past</span>
               </motion.button>
             </div>
           </div>
@@ -207,7 +209,7 @@ export default function MyBookingsPage() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
               >
                 {filteredBookings.map((booking, index) => (
                   <motion.div
@@ -226,52 +228,52 @@ export default function MyBookingsPage() {
                         damping: 15,
                       },
                     }}
-                    className="relative rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer overflow-hidden"
+                    className="relative rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer overflow-hidden"
                   >
                     {/* Main Ticket Section */}
-                    <div className="flex h-64">
+                    <div className="flex h-56 sm:h-64">
                       {/* Left Section - Main Content */}
-                      <div className="flex-1 p-6 flex flex-col justify-between bg-black">
+                      <div className="flex-1 p-4 sm:p-6 flex flex-col justify-between bg-black">
                         {/* Header */}
-                        <div className="flex items-center gap-2 mb-4">
-                          <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
+                        <div className="flex items-center gap-2 mb-3 sm:mb-4">
+                          <div className="w-5 h-5 sm:w-6 sm:h-6 bg-white/20 rounded-full flex items-center justify-center">
                             <span className="text-white font-bold text-xs">
                               LS
                             </span>
                           </div>
-                          <span className="text-white font-medium text-sm">
+                          <span className="text-white font-medium text-xs sm:text-sm">
                             {booking.location} • LushLooks
                           </span>
                         </div>
 
                         {/* Time */}
-                        <div className="mb-4">
+                        <div className="mb-3 sm:mb-4">
                           <p className="text-white/80 text-xs mb-1">Time</p>
-                          <p className="text-white font-bold text-lg">
+                          <p className="text-white font-bold text-base sm:text-lg">
                             {booking.time}
                           </p>
                         </div>
 
                         {/* Booking ID & Price */}
-                        <div className="flex justify-between items-end mb-4">
+                        <div className="flex justify-between items-end mb-3 sm:mb-4">
                           <div>
                             <p className="text-white/80 text-xs mb-1">
                               Booking ID
                             </p>
-                            <p className="text-white font-bold text-base">
+                            <p className="text-white font-bold text-sm sm:text-base">
                               {booking.id.toUpperCase()}
                             </p>
                           </div>
                           <div>
                             <p className="text-white/80 text-xs mb-1">Price</p>
-                            <p className="text-white font-bold text-base">
+                            <p className="text-white font-bold text-sm sm:text-base">
                               {booking.price}
                             </p>
                           </div>
                         </div>
 
                         {/* Action Buttons */}
-                        <div className="flex gap-2 mt-4">
+                        <div className="flex gap-1 sm:gap-2 mt-3 sm:mt-4">
                           {activeTab === 'upcoming' ? (
                             <>
                               <motion.button
@@ -279,7 +281,7 @@ export default function MyBookingsPage() {
                                   e.stopPropagation();
                                   handleViewArtist(booking.artistId);
                                 }}
-                                className="flex-1 bg-white/90 text-gray-700 py-2 px-3 rounded-lg text-xs font-medium hover:bg-white transition-colors"
+                                className="flex-1 bg-white/90 text-gray-700 py-1.5 sm:py-2 px-2 sm:px-3 rounded-md sm:rounded-lg text-xs font-medium hover:bg-white transition-colors"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                               >
@@ -290,7 +292,7 @@ export default function MyBookingsPage() {
                                   e.stopPropagation();
                                   handleCancelBooking(booking.id);
                                 }}
-                                className="flex-1 bg-red-500 text-white py-2 px-3 rounded-lg text-xs font-medium hover:bg-red-600 transition-colors"
+                                className="flex-1 bg-red-500 text-white py-1.5 sm:py-2 px-2 sm:px-3 rounded-md sm:rounded-lg text-xs font-medium hover:bg-red-600 transition-colors"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                               >
@@ -303,7 +305,7 @@ export default function MyBookingsPage() {
                                 e.stopPropagation();
                                 handleRebook(booking.artistId);
                               }}
-                              className="w-full bg-white/90 text-gray-700 py-2 px-3 rounded-lg text-xs font-medium hover:bg-white transition-colors"
+                              className="w-full bg-white/90 text-gray-700 py-1.5 sm:py-2 px-2 sm:px-3 rounded-md sm:rounded-lg text-xs font-medium hover:bg-white transition-colors"
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
                             >
@@ -314,25 +316,25 @@ export default function MyBookingsPage() {
                       </div>
 
                       {/* Perforated Line */}
-                      <div className="relative w-8 flex items-center justify-center">
-                        <div className="flex flex-col space-y-1">
+                      <div className="relative w-6 sm:w-8 flex items-center justify-center">
+                        <div className="flex flex-col space-y-0.5 sm:space-y-1">
                           {[...Array(8)].map((_, i) => (
                             <div
                               key={i}
-                              className="w-1 h-1 bg-white/30 rounded-full"
+                              className="w-0.5 sm:w-1 h-0.5 sm:h-1 bg-white/30 rounded-full"
                             />
                           ))}
                         </div>
                       </div>
 
                       {/* Right Section - Date */}
-                      <div className="w-20 bg-white flex flex-col items-center justify-center p-4">
+                      <div className="w-16 sm:w-20 bg-white flex flex-col items-center justify-center p-3 sm:p-4">
                         <p className="text-gray-600 text-xs font-medium mb-1">
                           {new Date(booking.date)
                             .toLocaleDateString('en-US', { month: 'short' })
                             .toUpperCase()}
                         </p>
-                        <p className="text-black text-3xl font-bold">
+                        <p className="text-black text-2xl sm:text-3xl font-bold">
                           {new Date(booking.date)
                             .getDate()
                             .toString()

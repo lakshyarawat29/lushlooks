@@ -116,9 +116,9 @@ export function HeroSection() {
         className="relative z-10 h-full flex items-center justify-center"
         style={{ y: contentY, opacity: contentOpacity }}
       >
-        <div className="container-custom text-center text-white">
+        <div className="container-custom text-center text-white px-4">
           <Reveal>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-none tracking-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold leading-tight tracking-tight mb-4 sm:mb-6">
               <AnimatedText text="Professional makeup" delay={0.5} />
               <br />
               <span className="italic font-light">
@@ -129,7 +129,7 @@ export function HeroSection() {
 
           <Reveal delay={0.2}>
             <motion.p
-              className="text-lg md:text-xl text-white/90 mb-12 leading-relaxed"
+              className="text-base sm:text-lg md:text-xl text-white/90 mb-8 sm:mb-12 leading-relaxed max-w-4xl mx-auto px-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
@@ -147,7 +147,7 @@ export function HeroSection() {
 
       {/* Slideshow Indicators */}
       <motion.div
-        className="absolute bottom-24 left-1/2 transform -translate-x-1/2 z-20 flex gap-2"
+        className="absolute bottom-16 sm:bottom-20 md:bottom-24 left-1/2 transform -translate-x-1/2 z-20 flex gap-1 sm:gap-2"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
@@ -159,7 +159,7 @@ export function HeroSection() {
         {heroImages.map((_, index) => (
           <button
             key={index}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+            className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-300 ${
               index === currentImageIndex
                 ? 'bg-white scale-125'
                 : 'bg-white/40 hover:bg-white/60'
